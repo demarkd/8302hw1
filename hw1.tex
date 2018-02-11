@@ -7,7 +7,7 @@
 \usepackage{mathtools}
 \usepackage{enumitem}
 \usepackage{relsize}
-
+\usepackage{tikz-cd}
 %\usepackage{natbib}
 %\bibliographystyle{plainnat}
 %\setcitestyle{authoryear,open={(},close={)}}
@@ -219,81 +219,69 @@
 \newcommand{\oX}{\overline{X}}
 \newcommand{\ox}{\overline{x}}
 \newcommand{\tX}{\tilde{X}}
+\newcommand{\tH}{\tilde{H}}
 \newcommand{\tx}{\tilde{x}}
 \newcommand{\hX}{\hat{X}}
 \newcommand{\hx}{\hat{x}}
 \newcommand{\aut}{\mathrm{Aut}}
 \newcommand{\del}{\partial}
+\newcommand{\RP}{{\RR\mathrm{P}}}
+\newcommand{\csm}{\RP^n\#\RP^n}
 \begin{document}
 \maketitle
-\emph{Collaborators: Sarah Brauner.}
+%\emph{Collaborators: Sarah Brauner.}
 
 \noindent\textbf{All references to theorems come from Allen Hatcher's \emph{Algebraic Topology} unless otherwise stated.}
-\prob{1}
-We let $\oX$ be path connected, $G$ a group action on $X$, and $p:\oX\to X:=\oX/G$ a covering map
-\prt{1}
-\begin{proposition*}
-	For covering space maps $\oX\to \tX\to X$, $\tX\cong \oX/H$ for some $H<G$. 
+\prob{1} We let $p\in \RP^n$, $D\ni p$ a small open disk, $S:=\del D \cong S^{n-1}$, and $X:=\RP^n\setminus D$.  
+\prt{1} \begin{proposition*}
+	$X\simeq \RP^{n-1}$.
 \end{proposition*}
 \begin{proof}
-	We let $\hX\to X$ be the universal cover of $X$ and first restrict our attention to the case $\oX=\hX$. Then, proposition 1.39 implies that $F:=\aut(\hX/X)\cong \pi_1(X,x_0)$. We note that for any $H<F$, we may construct a covering map $\tX:=\hX/H\to X$, which is unique up to based isomorphism by the observation that for $\tX_1:=\hX/H_1$ and $\tX_2:=\hX/H_2$, we then have that $\aut(\hX/\tX_1)=\aut(\hX/\tX_2)$ if and only if $H_1=H_2$. Then, proposition 1.38 shows our special case, as we have shown that covering maps $\hX/H\to X$ are in bijection with subgroups of $F$, and proposition 1.38 associates subgroups of $F$ with covering maps $\oX\to X$. Proposition 1.39 then states that for $\tX=\hX/H$, $\pi_1(\tX,\tx_0)=H$, so indeed our association and that of proposition 1.38 one and the same.\footnote{Well, technically to bridge that gap we also need the fact that for $p:\tX\to X$ a covering map, $p_*:\pi_1(\tX,\tx_0)\to \pi_1(X,x_0)$ is an injection, which is given by proposition 1.31.} 
-	
-	We now consider the case of a general covering map $\oX\to X:=\oX/G$ with intermediate covering maps $\oX\to\tX\to X$. As before, we let $\hX\to X$ be a universal cover with $F:=\aut(\hX/X)\cong \pi_1(X,x_0)$. Then, our previous work shows $\oX=\hX/N$ for some $N<F$ with $N\cong \pi_1(\oX,\ox_0)$. We have by proposition 1.40a that $\oX\to X$ is normal and $G\cong F/N$. Then, as the subgroup poset of $F$ is dual to the covering space poset of $X$ (where $\tX\geq\oX$ iff there exists a covering $\tX\to \oX$)\footnote{We haven't quite justified this, but it is an immediate corollary of proposition 1.38 in conjunction with proposition 1.31.}, we have by our special case that intermediate coverings $\oX\to\tX\to X$ are in bijection with subgroups $\hat{H}$ such that $N<\hat{H}<F$, which are in bijection with subgroups $H<G=F/N$ by the map $\hat{H}\mapsto \hat{H}/N$. As each of the covering spaces $\oX/H\to X$ exist uniquely by the same argument of above, our proof is now complete. 
+	We let $\pi: S^n\to \RP^n$ be such that $\pi^{-1}(p)=\{\pm (1,0,\ldots,0)\}$. We shall show that $S^n\setminus \pi^{-1}(D)\simeq S^{n-1}$ via a homotopy $\tH:\left(S^n\setminus \pi^{-1}(D)\right)\times [0,1]\to S^n\setminus \pi^{-1}(D)$ with $\tH_t(\vec{x})=-\tH_t(-\vec{x})$. We give $\tH$ explicitly, letting 
+	$$\tH_t(x_0,\ldots,x_n)=\frac{1}{\norm{(1-t)x_0,x_1,x_2,\ldots,x_n}}\left((1-t)x_0,x_1,x_2,\ldots,x_n\right)$$
+	Then, $\tH_1(S^n\setminus \pi^{-1}(D))=S^{n-1}=\{\vec{x}\in S^n\;:\; \vec{x}=(0,x_1,\ldots,x_n)\}$, and it is immediately clear from construction that $\tH_t(-\vec{x})=-\tH_t(\vec{x})$. Hence, $\tH$ factors through the quotient map to $\RP^n\setminus D$ giving a homotopy equivalence $H:\RP^n\times [0,1]\to (S^{n-1}/\sim)\cong \RP^{n-1}$.
 \end{proof}
 \prt{2}
-\begin{proposition}
-	$\oX/H_1\cong \oX/H_2$ if and only if $H_1$ and $H_2$ are conjugate
-\end{proposition}
+\begin{proposition*}The inclusion $\iota:S\to \RP^n\setminus D$ induces the map $\iota_*:H_*(S)\to H_*(X)$ where $\iota_*:H_{n-1}(S)\cong \ZZ\to H_{n-1}(X)\cong \ZZ$ is the multiplication-by-two map if $n$ is even, $\iota_*:H_0(S)\to H_0(S)$ is the identity map, and the $0$ map otherwise. \end{proposition*}
 \begin{proof}
-Proposition 1.38 states that for covering spaces $p_1:\tX_1\to X$ and $p_2:\tX_2\to X$, $\tX_1\cong \tX_2$ if and only if $\pi_1(\tX_1)$ and $\pi_1(\tX_2)$ are conjugate. We showed that $\tX_i=\hX/\pi_1(\tX_i):=H_i$, and it is the case that all covering spaces $\hX/H$ exist. Thus, the proposition follows trivially from part a.
+	That $\iota_*$ is the identity map on $H_0$ is trivial. If $n$ is odd, then $H_{n-1}(X)=0$, so $\iota_*:H_{n-1}(S)\to H_{n-1}(X)$ is necessarily the 0 map, and if $m\neq 0,n-1$, $H_m(S)=0$. Thus, the only interesting case is that of $\iota_*:H_{n-1}(S)\to H_{n-1}(X)$ in the case that $n$ is even.
+	Theorem 2.13 gives that since $S$ is a deformation retract of a neighborhood in $X$, there is a long exact sequence $$\begin{tikzcd}
+	\ldots \arrow[r]&\tH_m(S)\arrow[r,"\iota_*"]&\tH_m(X)\arrow[r]&\tH_m(X/D)\arrow[r]&\tH_{m-1}(S)\arrow[r]&\ldots
+	\end{tikzcd}$$
+	We note that $X/D\cong \RP^n$ and recall from problem 1 that $X\simeq \RP^{n-1}$. Thus, we in fact have an exact sequence (up to isomorphism)
+	$$\begin{tikzcd}
+	\ldots \arrow[r]&\tH_m(S^{n-1})\arrow[r,"\iota_*"]&\tH_m(\RP^{n-1})\arrow[r]&\tH_m(\RP^n)\arrow[r]&\tH_{m-1}(S^{n-1})\arrow[r]&\ldots
+	\end{tikzcd}$$
+	As $n$ is even, $\tH_n(\RP^n)=0$ and $\tH_{n-1}(\RP^n)\cong\ZZ/2$, giving us the short exact sequence
+		$$\begin{tikzcd}
+\tH_n(\RP^n)\arrow[r]\arrow[d,"\cong"]&\tH_{n-1}(S^{n-1})\arrow[d,"\cong"]\arrow[r,"\iota_*"]&\tH_{n-1}(\RP^{n-1})\arrow[r]\arrow[d,"\cong"]&\tH_{n-1}(\RP^{n})\arrow[r]\arrow[d,"\cong"]&\tH_{n-2}(S^{n-1})\arrow[d,"\cong"]\\
+0\arrow[r]&\ZZ\arrow[r,"\iota_*"]&\ZZ\arrow[r]&\ZZ/2\arrow[r]&0
+	\end{tikzcd}$$
+	Thus, by exactness we may conclude that $\iota_*$ is the multiplication-by-two map.
 \end{proof}
-\prt{3}
-\begin{proposition}
-	$\tX:=\oX/H\to X$ is normal if and only if $H\unlhd G$ in which case $\aut(\tX/X)=G/H$. 
-\end{proposition}
-\begin{proof}
-	We have that $\tX=\oX/H=\hX/\hat{H}$ for some $\hat{H}<F$ with $N\unlhd \hat{H}\cong \pi_1(\tX,\tx_0)$ and $H=\hat{H}/N$. We have by proposition 1.39 that $\tX\to X$ is normal if and only if $p_*(\pi_1(\tX,\tx_0)\cong \hat{H}$ is normal in $\pi_1(X,x_0)$. Finally, we note that $H\unlhd G$ if and only if $\hat{H}\unlhd F$. This completes our proof.
-\end{proof}
-\prob{2}
-\begin{proposition*}
-	For any group $G$ and $N\unlhd G$, there exists a normal covering space $\oX\to X$ with $\pi_1(X)\cong G$, $\pi_1(\oX)\cong N$ and $\aut(\oX/X)\cong G/N$.
-\end{proposition*}
-\begin{proof}
-We let $G=\langle g_\alpha \;\mid \;r_\beta \rangle$ with generators $g_\alpha$ indexed over $A$ and relations $r_\beta$ indexed over $B$. We then recall Hatcher's construction of a space $X_G$ with $\pi_1(X_G,x_0)=G$: we let $Y=\left(\bigwedge_{\alpha\in A} S^1\right) \sqcup \left(\bigsqcup_{\beta\in B} D^2\right)$, and define an equivalence relation $\sim$ wich associates the boundary of the copy of $D^2$ indexed by $\beta$ to the copies of $S^1$ associated to the letters in the word $r_\beta$. Then, $X:=Y/\sim$ fulfills the desired property, and the universal cover $\hX$ of $X$ has $\aut(\hX/X)=G$. Our argument for question 1 then ensures the existence of $\oX$ and gives its fundamental group and $\aut(\oX/X)$.
-\end{proof}
-\prob{3}	We let $C_\bullet $ and $D_\bullet$ be chain complexes and $f,g,h:C_\bullet\to D_{\bullet}$ chain maps. If there exists a homotopy map $P:C_n\to D_{n+1}$ such that $P\del+\del P=f-g$, we say $f\sim g$.
-\begin{proposition*}
-	Chain homotopy ($\sim$) is an equivalence relation.
-\end{proposition*}
-
-
-\begin{proof}	
-	\emph{Reflexivity:} We wish to show $f\sim f$. We let $P:C_n\to D_{n+1}$ be the $0$ map. Then, $P\del+\del P=0=f-f$, so $f\sim f$.
-	
-	\emph{Symmetry} We suppose $f\sim g$ and let $P:C_n\to D_n$ be a chain homotopy between them. We let $P'=-P$ and then have that $P'\del+\del P'=-(P\del +\del P)=-(f-g)=g-f$ so $g\sim f$. 
-	
-	\emph{Transitivity} We suppose $f\sim g$ and $g\sim h$. We let $P_i$ be such that $P_1\del+\del P_1=f-g$ and $P_2\del +\del P_2=g-h$. We let $P=P_1+P_2$ and then have that $P\del+\del P=(P_1+P_2)\del+\del (P_1+P_2)=(P_1\del +\del P_1) +(P_2\del +\del P_2) =(f-g)+(g-h)=f-h$ so $f\sim h$.
-\end{proof}
-\prob{4}
-\begin{proposition*}
-We suppose $A\subset X$ with inclusion map $\iota:A\to X$ and that $X$ retracts onto $A$. Then, $\iota_*:H_*(A)\to H_*(X)$ is an injection. 
-\end{proposition*}
-
-\begin{proof} We suppose
-	$X$ retracts onto $A$ via the map $\tau$, i.e. $\tau:X\to A$ is such that $\tau\circ \iota=\id_A$. We recall that $H_*(-)$ is \emph{functorial,} that is, it preserves composition and the identity map. Thus, $\id_{H_*(A)}=H_*(\id_A)=H_*(\tau\circ \iota)=\tau_*\circ \iota_*$. We recall the following category-theoretic fact with obvious proof: if $\phi\in \hom(A,B)$, $\psi\in \hom(B,C)$ and $\psi\circ \phi$ is an isomorphism, then $\phi$ is a monomorphism and $\psi$ is an epimorphism. Hence, $\iota_*$ is an injection, and though we have already completed our proof, we may as well note that $\tau_*$ is surjective. 
-\end{proof}
-\prob{5} \begin{prompt*}
-	Let $A$ be a finitely generated Abelian group. Construct a chain complex $C_\bullet$ such that $H_0(C_\bullet)=A$ but $H_i(C_\bullet)=0$ for $i\neq 0$.
-\end{prompt*}
-\begin{proof}[Response]
-	By the structure theorem for Abelian groups, $A=\bigoplus_{k=1}^n \ZZ/{m_k}$ for some $m_k\geq 0$. We let $N=\langle (0,\hdots,m_k,\hdots,0)\;\mid\; k\in [n] \rangle $, so that $A=\ZZ^n/N$. Then, we claim that the following chain complex fulfils the desired properties: we let \begin{equation}
-		C_i=\begin{cases}
-			N     & i=1              \\
-			\ZZ^n & i=0              \\
-			0     & \text{otherwise}
+\prt{3}\begin{proposition*}
+	\begin{equation}
+		H_m(\RP^{n}\#\RP^n)=\begin{cases}
+		\ZZ\oplus \ZZ& m=n\equiv 1\mod 2\\
+		\ZZ/2\oplus \ZZ & m=n-1\equiv 1 \mod 2\\
+		\ZZ/2 \oplus \ZZ/2 &0<m<n,\, m\equiv 1 \mod 2\\
+		\ZZ& m=0
 		\end{cases}
 	\end{equation}
-Now,  we have that $\del_1$ is injective (the inclusion $N\to \ZZ^n$), so $H_1(C_*)=0/0=0$. $\im \del_1=N$ and $\ker \del_0=\ZZ^n$ as $\im\del_0=0$. Thus, $H_0(C_*)=\ZZ^n/N=A$. For all other $i$, we have that $C_i=0$ so $\del_i$ is the $0$ map and hence $H_i(C_*)=0$. 
-\end{proof}
+\end{proposition*}
+\begin{proof}
+ We note that $\RP^n\#\RP^n$ can be constructed from two copies of $X$ by gluing along a neighborhood of $S$. Hence, we have the Meyer-Vitetorus (CHECK SPELLING BEFORE TURNING IN) sequence
+$$\begin{tikzcd}
+\ldots \arrow[r]&H_m(S)\arrow[r]& H_m(X)\oplus H_m(X)\arrow[r]& H_m(\csm)\arrow[r] &H_{m-1} (S)\arrow[r]&\ldots
+\end{tikzcd}$$
 
+\end{proof}
+\prob{2}
+\prt{1}
+\prt{2}
+\prob{3}N/A (Problem de-assigned)
+
+\prob{4}
+\prt{1}
+\prt{2}
 \end{document}
